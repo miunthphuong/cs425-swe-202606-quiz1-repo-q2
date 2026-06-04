@@ -21,8 +21,14 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      # Tự động sinh cấu hình Maven Wrapper sạch ngay trên máy ảo Ubuntu
+      - name: Generate Maven Wrapper on Runner
+        run: mvn wrapper:wrapper
+
+      # Cấp quyền thực thi cho file wrapper vừa sinh ra
       - name: Permission for Executable
         run: chmod +x mvnw
 
+      # Thực hiện đóng gói ứng dụng
       - name: Build with Maven Wrapper
         run: ./mvnw clean package
