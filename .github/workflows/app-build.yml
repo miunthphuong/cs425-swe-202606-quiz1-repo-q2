@@ -1,4 +1,4 @@
-name: Build PAMS App via CI with Maven
+name: Build PAMS App via CI with Maven *
 
 on:
   push:
