@@ -11,24 +11,14 @@ jobs:
     runs-with: ubuntu-latest
 
     steps:
-      # Bước 1: Tải source code từ kho GitHub xuống máy ảo
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      # Bước 2: Khởi tạo và cài đặt môi trường Java (JDK 17 ổn định)
-      - name: Set up JDK 17
+      - name: Set up Java JDK
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
 
-      # Bước 3: Tự động thiết lập Maven riêng biệt cho máy ảo để tránh lỗi lệnh hệ thống
-      - name: Set up Maven
-        uses: stacht/setup-maven@v3
-        with:
-          maven-version: '3.9.6'
-
-      # Bước 4: Thực hiện đóng gói ứng dụng
-      - name: Build with Maven
-        run: mvn clean package
+      - name: Validate and Package with Maven
+        run: mvn -B package --file pom.xml
