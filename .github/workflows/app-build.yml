@@ -19,6 +19,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: maven
 
-      - name: Validate and Package with Maven
-        run: mvn -B package --file pom.xml
+      - name: Permission for Executable
+        run: chmod +x mvnw
+
+      - name: Build with Maven Wrapper
+        run: ./mvnw clean package
